@@ -1,0 +1,103 @@
+<div class="position-relative overflow-hidden text-center">
+  <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
+    <div class="col-md-12 px-0">
+      <h1 class="display-4 font-italic">
+        {{ contact?.name }}'s Contact Details
+      </h1>
+    </div>
+  </div>
+
+  <div class="col-md-4 offset-md-4 mt-5">
+    <div class="card mb-4 border-none">
+      <svg
+        class="bd-placeholder-img card-img-top"
+        width="100%"
+        height="225"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="xMidYMid slice"
+        focusable="false"
+        role="img"
+        aria-label="Placeholder: Thumbnail"
+      >
+        <title>Placeholder</title>
+        <rect width="100%" height="100%" fill="#55595c" />
+        <text x="50%" y="50%" fill="#eceeef" dy=".3em">
+          {{ contact?.email }}
+        </text>
+      </svg>
+      <div class=" card-body">
+        <h3 class="my-5 card-text text-left">
+          <strong>Name: </strong>
+          <span class="text-muted">
+            {{ contact?.name }}
+          </span>
+        </h3>
+
+        <h3 class="my-5 text-left card-text">
+          <strong>Phone Numer: </strong>
+          <span class="text-muted">
+            {{ contact?.number }}
+          </span>
+        </h3>
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="btn-group">
+            <button routerLink="/contact/update/{{contact?.id}}" class="btn btn-md btn-outline-secondary">
+              Edit
+            </button>
+            <button
+              type="button"
+              data-toggle="modal"
+              data-target="#exampleModal"
+              class="btn btn-md btn-outline-danger"
+            >
+              Delete
+            </button>
+          </div>
+          <small class="text-muted">
+            Tags:
+            <span
+              *ngFor="let tag of contact?.tags"
+              class="badge mr-1 badge-pill badge-info"
+              >{{ tag }}
+            </span>
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Section -->
+<div id="exampleModal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete {{ contact?.name }} Contact</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to remove this contact?</p>
+      </div>
+      <div class="modal-footer">
+        <button
+          (click)="deleteContact()"
+          data-dismiss="modal"
+          class="btn btn-danger"
+        >
+          Delete
+        </button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal End -->

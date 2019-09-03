@@ -1,0 +1,63 @@
+<h5
+  *ngIf="apiService.isCreated"
+  class="alert alert-primary text-center"
+  role="alert"
+>
+  New Contact Created Successfully
+</h5>
+<h5
+  *ngIf="apiService.isUpdated"
+  class="alert alert-success text-center"
+  role="alert"
+>
+  Contact Updated Successfully
+</h5>
+<h5
+  *ngIf="apiService.isDeleted"
+  class="alert alert-danger text-center"
+  role="alert"
+>
+  Contact Deleted Successfully
+</h5>
+<div class="container p-4">
+  <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
+    <div class="col-md-12 px-0">
+      <h1 class="display-4 font-italic">
+        Contacts List
+      </h1>
+    </div>
+  </div>
+  <div class="row mb-2">
+    <div class="col-md-6" *ngFor="let contact of contacts$ | async">
+      <div
+        class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
+      >
+        <div class="col-lg-8 p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary">{{
+            contact.email
+          }}</strong>
+          <h3 class="mb-0">
+            {{ contact.name }}
+          </h3>
+          <p class="card-text my-4">
+            <span class="font-weight-bold"> Phone Number: </span>
+            {{ contact.number }}
+          </p>
+          <a
+            href="javascript"
+            routerLink="/contact/{{ contact.id }}"
+            class="stretched-link"
+            >More</a
+          >
+        </div>
+        <div class="col-lg-4 d-none d-lg-block">
+          <img
+            src="../../assets/book.png"
+            class="rounded img float-left"
+            alt="..."
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

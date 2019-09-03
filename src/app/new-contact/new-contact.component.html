@@ -1,0 +1,78 @@
+<form class="form-signin my-5" #form="ngForm" (ngSubmit)="onSubmit(form)">
+  <div class="text-center">
+    <img
+      class="mb-4"
+      src="../../assets/book.png"
+      alt=""
+      width="72"
+      height="72"
+    />
+    <h1 class="h3 mb-3 font-weight-normal">New Contact</h1>
+  </div>
+
+  <div class="form-label-group">
+    <input
+      type="text"
+      id="inputName"
+      class="form-control"
+      placeholder="Name"
+      name="name"
+      [(ngModel)]="contact.name"
+      #name="ngModel"
+      required
+    />
+    <label for="inputEmail">Name</label>
+    <div *ngIf="!nameIsValid" class="ng-invalid">
+      Name is Required!
+    </div>
+  </div>
+
+  <div class="form-label-group">
+    <input
+      type="text"
+      name="number"
+      (keydown)="onKeyDown($event)"
+      [(ngModel)]="contact.number"
+      #number="ngModel"
+      id="inputNumber"
+      class="form-control"
+      placeholder="Number"
+      pattern="[0-9]*"
+      required
+    />
+    <label for="inputNumber">Phone Number</label>
+    <div *ngIf="!numberIsValid" class="ng-invalid">
+      Phone Number is Required!
+    </div>
+  </div>
+
+  <div class="form-label-group">
+    <input
+      type="email"
+      name="email"
+      [(ngModel)]="contact.email"
+      #email="ngModel"
+      id="inputEmail"
+      class="form-control"
+      placeholder="Email address"
+    />
+    <label for="inputEmail">Email address</label>
+  </div>
+
+  <div class="form-label-group">
+    <input
+      type="text"
+      name="tags"
+      [(ngModel)]="contact.tags"
+      #tags="ngModel"
+      id="inputTags"
+      class="form-control"
+      placeholder="Tags"
+    />
+    <label for="inputTags">Tags</label>
+  </div>
+
+  <button class="btn btn-lg btn-primary btn-block" type="submit">
+    Submit
+  </button>
+</form>
